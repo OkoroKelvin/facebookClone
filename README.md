@@ -139,4 +139,3 @@
 
 - PERMISSION
     constants: READ, WRITE, CREATE, DELETE
-
