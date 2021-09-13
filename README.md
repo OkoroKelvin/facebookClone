@@ -53,6 +53,7 @@
   - id: bigint, autoIncrement, primary key
     - title: text 
     - author: USER
+    - content: text
     - published_on: localDateTime
     - book_file: file
     - created_on: localDateTime
