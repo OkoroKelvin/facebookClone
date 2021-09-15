@@ -23,6 +23,8 @@ public class PostDatabase <T> implements Database<T>{
         posts.add(t);
     }
 
+
+
     @Override
     public int size() {
         return posts.size();

@@ -1,13 +1,16 @@
 package data.model;
 
+import data.repository.Storable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class User {
+public class User implements Storable {
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -16,6 +19,7 @@ public class User {
     private List<String> friends;
 
     public User(String firstName, String lastName, String email, String password) {
+        this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
