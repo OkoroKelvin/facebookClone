@@ -5,7 +5,7 @@ import data.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDatabase<T> implements Database<T> {
+public class UserDatabase<T extends Storable> implements Database<T> {
     private final List<T> store = new ArrayList<>();
 
     private static UserDatabase<User> instance = null;
@@ -22,11 +22,6 @@ public class UserDatabase<T> implements Database<T> {
         store.add(t);
     }
 
-    @SafeVarargs
-    @Override
-    public final void save(T... t) {
-
-    }
 
     @Override
     public int size(){
@@ -38,4 +33,22 @@ public class UserDatabase<T> implements Database<T> {
         return store;
     }
 
+    public T findByEmail(String email){
+        for (T t: store) {
+            if (t.getEmail().equals(email)) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public boolean existByEmail(String email) {
+        boolean isValidUser = false;
+        for (T t: store) {
+            if (t.getEmail().equals(email)) {
+                isValidUser = true;
+            }
+        }
+        return isValidUser;
+    }
 }
