@@ -65,4 +65,10 @@ class UserTest {
         UserDatabase<User> userDatabase2 = UserDatabase.getInstance();
         assertThat(userDatabase1).isEqualTo(userDatabase2);
     }
+
+    @Test
+    @DisplayName("User can post")
+    void userHasAPost(){
+
+    }
 }
