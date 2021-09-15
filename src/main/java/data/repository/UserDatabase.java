@@ -22,6 +22,12 @@ public class UserDatabase<T> implements Database<T> {
         store.add(t);
     }
 
+    @SafeVarargs
+    @Override
+    public final void save(T... t) {
+
+    }
+
     @Override
     public int size(){
         return store.size();
