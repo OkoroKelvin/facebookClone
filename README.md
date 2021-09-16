@@ -10,6 +10,8 @@
 - Users can share, like, comment, delete, create, update post
 - Users can change post access to public or private
 - Users can see news feeds
+- Authenticated user can view all posts
+- User can view it post
 - Users can add friend
 - Users can send friend request
 - Users can accept friend request
