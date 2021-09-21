@@ -17,6 +17,9 @@ public class User implements Storable {
     private String password;
     private String phoneNumber;
     private List<String> friends;
+    private boolean isActive;
+
+
 
     public User(String firstName, String lastName, String email, String password) {
         this.id = UUID.randomUUID().toString();
@@ -24,5 +27,17 @@ public class User implements Storable {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.isActive = true;
     }
+
+
+    public void setIsActive(boolean active) {
+        isActive = active;
+    }
+
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
 }

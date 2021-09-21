@@ -34,4 +34,5 @@ public class PostDatabase <T> implements Database<T>{
     public List<T> store() {
         return posts;
     }
+
 }
