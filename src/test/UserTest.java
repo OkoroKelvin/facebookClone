@@ -96,10 +96,4 @@ class UserTest {
 
     }
 
-
-    @Test
-    @DisplayName("User can post")
-    void userHasAPost() {
-
-    }
 }
