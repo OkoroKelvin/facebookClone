@@ -10,18 +10,16 @@ import services.UserService;
 import services.UserServiceImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class UserTest {
-
     private UserDto kelvin;
     private UserDto Janet;
     private UserDto John;
-
     private UserDatabase<User> userDatabase;
     private UserService userService;
+
 
     @BeforeEach
     void setUp() {
@@ -33,6 +31,7 @@ class UserTest {
         userDatabase = UserDatabase.getInstance();
     }
 
+
     @AfterEach
     void tearDown() {
         kelvin = null;
@@ -40,35 +39,67 @@ class UserTest {
         John = null;
     }
 
+
     @Test
     @DisplayName("User can be created")
-    void canCreateUserWhenConstructorIsInitializeTest(){
+    void canCreateUserWhenConstructorIsInitializeTest() {
         assertAll(
-                ()-> assertEquals(kelvin.getFirstName(), "Kelvin"),
+                () -> assertEquals(kelvin.getFirstName(), "Kelvin"),
                 () -> assertEquals(Janet.getFirstName(), "Janet"),
                 () -> assertEquals(John.getFirstName(), "John")
         );
     }
 
     @Test
-    @DisplayName("User can register")
-    void userCanRegisterTest(){
-        userService.register(kelvin);
-        assertThat(userDatabase.size()).isEqualTo(1);
-        assertThat(userDatabase.store().get(0).getFirstName()).isEqualTo("Kelvin");
-    }
-
-    @Test
     @DisplayName("Instance is the same all through")
-    void UserDatabaseReturnTheSameInstanceTest(){
+    void UserDatabaseReturnTheSameInstanceTest() {
         UserDatabase<User> userDatabase1 = UserDatabase.getInstance();
         UserDatabase<User> userDatabase2 = UserDatabase.getInstance();
         assertThat(userDatabase1).isEqualTo(userDatabase2);
     }
 
+
+    @Test
+    @DisplayName("User can register")
+    void userCanRegisterTest() {
+        userService.register(kelvin);
+        assertThat(userDatabase.size()).isEqualTo(1);
+        assertThat(userDatabase.store().get(0).getFirstName()).isEqualTo("Kelvin");
+    }
+
+
+    @Test
+    @DisplayName("Registered user can login")
+    void registeredUserCanLogin() {
+        kelvin = new UserDto("Kelvin", "obi", "obi@gmail.com", "obi123");
+        Janet = new UserDto("Janet", "ishola", "janet@gmail.com", "janet123");
+        userService.register(kelvin);
+        userService.register(Janet);
+        userService.login("obi@gmail.com", "obi123");
+        User userKelvin = userDatabase.findByEmail(kelvin.getEmail());
+        assertTrue(userKelvin.getIsActive());
+    }
+
+
+    @Test
+    @DisplayName("Registered user can logout")
+    void registeredUserCanLogout() {
+        kelvin = new UserDto("Kelvin", "obi", "obi@gmail.com", "obi123");
+        Janet = new UserDto("Janet", "ishola", "janet@gmail.com", "janet123");
+        userService.register(kelvin);
+        userService.register(Janet);
+        User userKelvin = userDatabase.findByEmail(kelvin.getEmail());
+        userService.login(kelvin.getEmail(), kelvin.getPassword());
+        assertTrue(userKelvin.getIsActive());
+        userService.logout(kelvin.getEmail());
+        assertFalse(userKelvin.getIsActive());
+
+    }
+
+
     @Test
     @DisplayName("User can post")
-    void userHasAPost(){
+    void userHasAPost() {
 
     }
 }
