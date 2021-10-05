@@ -30,6 +30,11 @@ public class BookShelf<T> implements Database<T>{
         return null;
     }
 
+    @Override
+    public T findById(String id) {
+        return null;
+    }
+
 
     public List<T> books() {
         return store;

@@ -4,6 +4,7 @@ import data.repository.Storable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,8 @@ public class User implements Storable {
     private String email;
     private String password;
     private String phoneNumber;
-    private List<String> friends;
+    private List<String> friends = new ArrayList<>();
+    private List<String> postIds = new ArrayList<>();
     private boolean isActive;
 
 

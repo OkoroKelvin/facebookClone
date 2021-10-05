@@ -62,7 +62,7 @@ class UserTest {
     @Test
     @DisplayName("User can register")
     void userCanRegisterTest() {
-        userService.register(kelvin);
+       userService.register(kelvin);
         assertThat(userDatabase.size()).isEqualTo(1);
         assertThat(userDatabase.store().get(0).getFirstName()).isEqualTo("Kelvin");
     }

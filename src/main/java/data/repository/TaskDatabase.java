@@ -32,4 +32,9 @@ public class TaskDatabase<T extends Storable> implements Database<T>{
     public List<T> store() {
         return store;
     }
+
+    @Override
+    public T findById(String id) {
+        return null;
+    }
 }

@@ -5,7 +5,7 @@ import data.model.Post;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDatabase <T> implements Database<T>{
+public class PostDatabase <T extends Storable> implements Database<T>{
 
     private final List<T> posts = new ArrayList<>();
     private static PostDatabase<Post> instance = null;
@@ -17,13 +17,10 @@ public class PostDatabase <T> implements Database<T>{
         return instance;
     }
 
-
     @Override
     public void save(T t) {
         posts.add(t);
     }
-
-
 
     @Override
     public int size() {
@@ -33,6 +30,16 @@ public class PostDatabase <T> implements Database<T>{
     @Override
     public List<T> store() {
         return posts;
+    }
+
+    @Override
+    public T findById(String id) {
+        for (T t : posts) {
+            if (t.getId().equals(id)){
+                return t;
+            }
+        }
+        return null;
     }
 
 }

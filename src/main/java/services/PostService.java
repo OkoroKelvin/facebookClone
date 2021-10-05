@@ -7,6 +7,6 @@ import exceptions.unAuthenticatedUser;
 import java.util.List;
 
 public interface PostService {
-    void save(PostDto postDto);
-    List<Post> viewPost(String userEmail) throws unAuthenticatedUser;
+    void save(PostDto postDto, String userEmail);
+    List<Post> viewAllPost(String userEmail) throws unAuthenticatedUser;
 }

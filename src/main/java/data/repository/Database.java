@@ -8,5 +8,5 @@ public interface Database<T>{
     void save(T t);
     int size();
     List<T> store();
-
+    T findById(String id);
 }

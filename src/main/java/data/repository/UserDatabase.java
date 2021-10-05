@@ -33,6 +33,11 @@ public class UserDatabase<T extends Storable> implements Database<T> {
         return store;
     }
 
+    @Override
+    public T findById(String id) {
+        return null;
+    }
+
     public T findByEmail(String email){
         for (T t: store) {
             if (t.getEmail().equals(email)) {
