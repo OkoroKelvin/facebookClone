@@ -1,15 +1,18 @@
 package services;
 
+import data.dto.PostDto;
 import data.dto.UserDto;
+import data.model.Post;
 import data.model.User;
+import data.repository.PostDatabase;
 import data.repository.UserDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
     private final UserDatabase<User> userDatabase = UserDatabase.getInstance();
+    private final PostDatabase<Post> postDatabase = PostDatabase.getInstance();
 
 
     @Override
@@ -26,6 +29,7 @@ public class UserServiceImpl implements UserService {
         for (User user : allUsers) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 user.setIsActive(true);
+                System.out.println(user);
             }
         }
     }
@@ -40,5 +44,11 @@ public class UserServiceImpl implements UserService {
             }
         }
 
+    }
+
+    @Override
+    public void createPost(PostDto postDto, String email) {
+        Post post = new Post(postDto.getText(), postDto.getContent(), email);
+        postDatabase.save(post);
     }
 }

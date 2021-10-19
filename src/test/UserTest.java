@@ -1,4 +1,5 @@
 
+import data.dto.PostDto;
 import data.dto.UserDto;
 import data.model.User;
 import data.repository.UserDatabase;
@@ -19,6 +20,7 @@ class UserTest {
     private UserDto John;
     private UserDatabase<User> userDatabase;
     private UserService userService;
+
 
 
     @BeforeEach
@@ -93,9 +95,18 @@ class UserTest {
         assertTrue(userKelvin.getIsActive());
         userService.logout(kelvin.getEmail());
         assertFalse(userKelvin.getIsActive());
-
     }
     @Test
-    @DisplayName("User can delete post")
+    @DisplayName("User can share post")
+    void userCanSharePost(){
+        kelvin = new UserDto("Kelvin", "obi", "obi@gmail.com", "obi123");
+        Janet = new UserDto("Janet", "ishola", "janet@gmail.com", "janet123");
+        userService.register(kelvin);
+        userService.register(Janet);
+        userService.login(kelvin.getEmail(), kelvin.getPassword());
+        PostDto postDto = new PostDto("The City is really red", "You can be great is you only wish");
+        userService.createPost(postDto,kelvin.getEmail());
+
+    }
 
 }

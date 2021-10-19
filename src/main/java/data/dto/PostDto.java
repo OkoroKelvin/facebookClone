@@ -6,11 +6,23 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PostDto {
     private String userId;
     private String text;
     private String content;
+
+
+    public PostDto(String userId, String text, String content){
+        this.userId = userId;
+        this.text = text;
+        this.content = content;
+    }
+
+    public PostDto(String text, String content){
+        this.text = text;
+        this.content = content;
+    }
 
 
     public static Post unpackDto(PostDto postDto){

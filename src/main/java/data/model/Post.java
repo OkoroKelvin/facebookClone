@@ -18,7 +18,7 @@ public class Post {
     @NotNull
     private String content;
     @NotNull
-    private String userId;
+    private String userEmail;
     private LocalDateTime createdOn =  LocalDateTime.now();
     private LocalDateTime updatedOn=  LocalDateTime.now();
 }
