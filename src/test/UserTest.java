@@ -95,5 +95,7 @@ class UserTest {
         assertFalse(userKelvin.getIsActive());
 
     }
+    @Test
+    @DisplayName("User can delete post")
 
 }
